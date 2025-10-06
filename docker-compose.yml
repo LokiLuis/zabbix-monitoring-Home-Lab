@@ -1,0 +1,133 @@
+# Docker Compose per lo Stack di Monitoraggio e Servizi
+# Progetto Portfolio di Luis Istrate
+# GitHub: github.com/tuoutente
+
+
+services:
+  # 1. Database per Zabbix
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    volumes:
+      - ./zabbix/postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD='password_per_database_zabbix' # password A
+    networks:
+      - zabbix-net
+    restart: always
+
+  # 2. Zabbix Server (Backend)
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:latest
+    container_name: zabbix-server
+    ports:
+      - "10051:10051"
+    depends_on:
+      - postgres-db
+    environment:
+      - DB_SERVER_HOST=postgres-db
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD='password_per_database_zabbix' # deve essere uguale a password A
+    volumes:
+      - ./zabbix/alertscripts:/usr/lib/zabbix/alertscripts
+    networks:
+      - zabbix-net
+    restart: always
+
+  # 3. Zabbix Frontend (Web UI)
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:latest
+    container_name: zabbix-web
+    ports:
+      - "8080:8080" # Accedi a Zabbix su http://<IP_SERVER>:8080
+    depends_on:
+      - zabbix-server
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - DB_SERVER_HOST=postgres-db
+      - POSTGRES_DB=zabbix
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD='password_per_database_zabbix' # deve essere uguale a password A
+    networks:
+      - zabbix-net
+    restart: always
+
+
+  # 4. Agente Zabbix per monitorare il server Zabbix stesso
+  zabbix-agent:
+    image: zabbix/zabbix-agent:latest
+    container_name: zabbix-agent
+    privileged: true
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_HOSTNAME=Zabbix server
+    networks:
+      - zabbix-net
+    restart: always
+
+  # --- STACK DI VISUALIZZAZIONE ---
+
+
+  # 5. Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000" # Accedi a Grafana su http://<IP_SERVER>:3000
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    networks:
+      - zabbix-net
+    restart: always
+
+    # 6. Ad-Blocker di Rete Pi-hole
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8081:80/tcp" # Interfaccia web di Pi-hole sulla porta 8081
+    environment:
+      TZ: 'Europe/Rome'
+      WEBPASSWORD: 'psw' # Scegli una password sicura
+    volumes:
+      - './pihole/etc-pihole:/etc/pihole'
+      - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN # Permessi di rete necessari a Pi-hole
+    networks:
+      - zabbix-net
+    restart: unless-stopped
+
+    # 7. Agente Zabbix per monitorare Pi-hole
+  zabbix-agent-pihole:
+    image: zabbix/zabbix-agent:latest
+    container_name: zabbix-agent-pihole
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+      - ZBX_HOSTNAME=pihole-container
+    networks:
+      - zabbix-net
+    restart: unless-stopped
+
+
+# --- CONFIGURAZIONE DI RETE ---
+networks:
+  zabbix-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+        
+
+# --- VOLUMI PERSISTENTI (definiti per chiarezza) ---
+volumes:
+  postgres_data:
+  alertscripts:
+
+
+
