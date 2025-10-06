@@ -1,6 +1,6 @@
 # Piattaforma di Monitoraggio e Gestione Servizi (Home Lab)
 
-![Dashboard di Grafana]
+[Dashboard di Grafana]
 <img width="2559" height="944" alt="image" src="https://github.com/user-attachments/assets/5ec7ffd1-55a9-4a2b-8d2a-c2a7046aa0ce" />
 
 
