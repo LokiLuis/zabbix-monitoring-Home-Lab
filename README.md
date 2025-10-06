@@ -60,13 +60,28 @@ Durante lo sviluppo di questo progetto, ho affrontato e risolto diverse problema
 
 ### **Come Eseguire il Progetto**
 
-1.  Clonare il repository.
-2.  Assicurarsi di avere Docker e Docker Compose installati.
-3.  Eseguire `docker compose up -d` dalla cartella principale.
-4.  Le interfacce web saranno disponibili ai seguenti indirizzi (potrebbe essere necessario configurare il port forwarding se si usa NAT):
-    *   **Zabbix:** `http://<IP_SERVER>:8080`
-    *   **Grafana:** `http://<IP_SERVER>:3000`
-    *   **Pi-hole:** `http://<IP_SERVER>:8081`
+1.  Assicurarsi di avere Docker e Docker Compose installati su un host Linux.
+2.  Clonare questo repository: `git clone https://github.com/LokiLuis/zabbix-monitoring-Home-Lab.git`
+3.  Entrare nella cartella del progetto: `cd zabbix-monitoring-Home-Lab`
+4.  Eseguire `docker compose up -d` per avviare tutti i servizi.
+
+Una volta avviati, i servizi saranno disponibili ai seguenti indirizzi, dove `<IP_SERVER>` è l'indirizzo IP dell'host su cui gira Docker:
+
+*   **Zabbix:** `http://<IP_SERVER>:8080`
+*   **Grafana:** `http://<IP_SERVER>:3000` 
+*   **Pi-hole:** `http://<IP_SERVER>:8081`
+
+---
+**Nota sulla mia configurazione di Sviluppo (VMware NAT):**
+
+Questo progetto è stato sviluppato su una VM Ubuntu in esecuzione su VMware Workstation Player in modalità di rete **NAT**. In questo specifico scenario, l'accesso ai servizi dall'host Windows non avviene tramite l'IP della VM, ma tramite `localhost` dopo aver configurato il **Port Forwarding** nelle impostazioni di rete di VMware (VMnet8).
+
+Esempio delle regole di Port Forwarding utilizzate:
+*   Host Port `8080` -> VM Port `8080` 
+*   Host Port `3000` -> VM Port `3000` 
+*   Host Port `8081` -> VM Port `8081` 
+
+Questo dettaglio è stato una delle sfide di troubleshooting affrontate nel progetto, come descritto sopra.
   
 
 
