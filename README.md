@@ -67,3 +67,18 @@ Durante lo sviluppo di questo progetto, ho affrontato e risolto diverse problema
     *   **Zabbix:** `http://<IP_SERVER>:8080`
     *   **Grafana:** `http://<IP_SERVER>:3000`
     *   **Pi-hole:** `http://<IP_SERVER>:8081`
+  
+
+
+## 🖼️ Galleria del Progetto
+
+zabbix
+<img width="2559" height="743" alt="image" src="https://github.com/user-attachments/assets/e30bd378-d491-4115-81c4-9e5e80d3ed47" />
+
+pi-hole
+<img width="1582" height="1306" alt="image" src="https://github.com/user-attachments/assets/5a025e3e-2ec3-4c20-bc44-5f1e35b25ab1" />
+
+avviso di errore su telegram
+<img width="616" height="209" alt="image" src="https://github.com/user-attachments/assets/d41ec601-096b-4ae4-a08e-3c1ec076b7d3" />
+
+
