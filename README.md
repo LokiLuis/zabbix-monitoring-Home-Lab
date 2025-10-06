@@ -1,6 +1,6 @@
 # Piattaforma di Monitoraggio e Gestione Servizi (Home Lab)
 
-![Dashboard di Grafana](https://imgur.com/a/LYZ156R)
+![Dashboard di Grafana]([https://imgur.com/a/LYZ156R](https://imgur.com/gallery/dashboard-di-grafana-LYZ156R))
 
 ---
 
