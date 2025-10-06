@@ -9,6 +9,7 @@
 Questo progetto consiste nella creazione di un'infrastruttura di monitoraggio end-to-end, progettata e implementata da zero per supervisionare servizi reali in un ambiente server. L'obiettivo era replicare uno stack tecnologico moderno e dimostrare competenze pratiche in amministrazione di sistemi Linux, virtualizzazione, containerizzazione, monitoraggio, automazione e troubleshooting.
 
 ---
+<img width="716" height="218" alt="image" src="https://github.com/user-attachments/assets/ee047dfb-55a5-41fa-9c13-e911e60a7be3" />
 
 ## 🛠️ Architettura e Stack Tecnologico
 
