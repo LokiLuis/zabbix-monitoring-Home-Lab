@@ -78,7 +78,7 @@ Durante lo sviluppo di questo progetto, ho affrontato e risolto diverse problema
 [Pi-Hole]
 <img width="1582" height="1306" alt="image" src="https://github.com/user-attachments/assets/5a025e3e-2ec3-4c20-bc44-5f1e35b25ab1" />
 
-[Notifica di errore su Telegram]
+[Notifica automatica su Telegram]
 <img width="616" height="209" alt="image" src="https://github.com/user-attachments/assets/d41ec601-096b-4ae4-a08e-3c1ec076b7d3" />
 
 
