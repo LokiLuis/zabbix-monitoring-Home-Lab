@@ -1,6 +1,8 @@
 # Piattaforma di Monitoraggio e Gestione Servizi (Home Lab)
 
-![Dashboard di Grafana](https://imgur.com/a/dashboard-di-grafana-LYZ156R)
+![Dashboard di Grafana]
+<img width="2559" height="944" alt="image" src="https://github.com/user-attachments/assets/5ec7ffd1-55a9-4a2b-8d2a-c2a7046aa0ce" />
+
 
 ---
 
@@ -9,7 +11,6 @@
 Questo progetto consiste nella creazione di un'infrastruttura di monitoraggio end-to-end, progettata e implementata da zero per supervisionare servizi reali in un ambiente server. L'obiettivo era replicare uno stack tecnologico moderno e dimostrare competenze pratiche in amministrazione di sistemi Linux, virtualizzazione, containerizzazione, monitoraggio, automazione e troubleshooting.
 
 ---
-<img width="716" height="218" alt="image" src="https://github.com/user-attachments/assets/ee047dfb-55a5-41fa-9c13-e911e60a7be3" />
 
 ## 🛠️ Architettura e Stack Tecnologico
 
